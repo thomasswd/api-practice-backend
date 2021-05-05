@@ -55,5 +55,17 @@ const loginUser = async(req, res) => {
     res.header('auth-token', token).send(token)
 }
 
+const getUsers = async(req, res) => {
+
+    try {
+        const users = await User.find()
+        res.json(users)
+    } catch (err) {
+        console.error(err)
+    }
+
+}
+
 module.exports.registerUser = registerUser;
 module.exports.loginUser = loginUser;
+module.exports.getUsers = getUsers;

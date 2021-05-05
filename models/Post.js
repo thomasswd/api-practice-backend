@@ -7,10 +7,11 @@ const postModel = new mongoose.Schema({
     },
     text: {
         type: String,
-        required: 'Post requires text'
+        required: true
     },
     Date: {
         type: Date,
+        default: Date.now
     }
 })
 
