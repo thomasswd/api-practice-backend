@@ -7,6 +7,6 @@ router.post('/register', registerUser)
 
 router.post('/login', loginUser)
 
-router.get('/users', tokenVerify, getUsers)
+router.get('/users', getUsers)
 
 module.exports = router
