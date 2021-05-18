@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../models/Post')
+const Comment = require('../models/Comment')
 const tokenVerify = require('../tokenVerification')
 
 router.get('/', async(req, res) => {
@@ -32,15 +33,38 @@ router.post('/', async(req, res) => {
 
 })
 
-router.get('/:postId', (req, res) => {
+router.get('/:postId', async(req, res) => {
+
+    console.log(req.params.postId)
     
+    try {
+        const post = await Post.findById(req.params.postId)
+
+        res.json(post)
+    } catch (err) {
+        console.error(err)
+    }
+
 })
 
-router.get('/:postId/comments', (req, res) => {
+router.post('/:postId/addComment', async(req, res) => {
     
+    try {
+        //res.send(req.params)
+        const comment = await new Comment({
+            body: req.body.body 
+        })
+        res.json(comment)
+
+        await comment.save()
+
+    } catch (err) {
+
+    }
+
 })
 
-router.get('/:postId/comments/:commentId', (req, res) => {
+router.post('/:postId/comments/:commentId', (req, res) => {
     
 })
 

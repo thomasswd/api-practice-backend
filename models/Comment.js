@@ -5,9 +5,14 @@ const commentModel = new mongoose.Schema({
         type: String,
         required: 'Post requires text'
     },
-    Date: {
+    post: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    },
+    date: {
         type: Date,
-    }
+        default: Date.now
+    },
 })
 
-module.exports = mongoose.model('Post', postModel)
+module.exports = mongoose.model('Comment', commentModel)
